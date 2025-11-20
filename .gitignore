@@ -1,0 +1,47 @@
+# Bundler
+/.bundle
+/vendor/bundle/
+
+# Local environment variables
+.env*
+.env
+
+# Logs
+/log/*
+!/log/.keep
+
+# Temporary files
+/tmp/*
+!/tmp/.keep
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Storage (ActiveStorage)
+storage/*
+!storage/.keep
+
+# Public compiled assets
+/public/assets
+/public/packs
+/public/packs-test
+
+# Node modules
+/node_modules
+
+# Yarn / NPM
+yarn-debug.log*
+npm-debug.log*
+
+# Rails credentials
+/config/master.key
+/config/credentials/*.key
+
+# Byebug / debugger history
+.byebug_history
+
+# IDE files
+.idea
+.vscode
+
+# DS_Store
+.DS_Store

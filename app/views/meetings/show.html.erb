@@ -1,0 +1,29 @@
+<h1>Meeting: <%= @meeting.room_name %></h1>
+
+<div id="jitsi" style="height: 600px; width: 100%; border: 1px solid #ccc;"></div>
+
+<script src="<%= @jitsi_domain %>/external_api.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const domain = "<%= @jitsi_domain.gsub('https://', '') %>";
+    const options = {
+      roomName: "<%= params[:room_name] || 'testroom' %>"
+      width: "100%",
+      height: 600,
+      parentNode: document.querySelector('#jitsi'),
+      configOverwrite: {
+        disableSimulcast: false,
+      },
+      interfaceConfigOverwrite: {
+        SHOW_JITSI_WATERMARK: false,
+      },
+    };
+
+    const api = new JitsiMeetExternalAPI(domain, options);
+
+    api.addEventListener('videoConferenceJoined', () => {
+      console.log('Joined the meeting!');
+    });
+  });
+</script>
