@@ -8,7 +8,8 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
-    @jitsi_domain = "https://192.168.239.128:8443/"
+    # my ipv4
+    @jitsi_domain = "https://192.168.56.1:8443/"
   end
 
   # GET /meetings/new
@@ -26,7 +27,7 @@ class MeetingsController < ApplicationController
 
     if @meeting.save
       # Return JSON for API usage (e.g., React Native)
-      render json: { room_name: @meeting.room_name, jitsi_domain: "https://192.168.242.55:8443" }, status: :created
+      render json: { room_name: @meeting.room_name, jitsi_domain: "https://192.168.56.1:8443/" }, status: :created
     else
       render json: @meeting.errors, status: :unprocessable_entity
     end
