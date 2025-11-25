@@ -7,9 +7,10 @@ class MeetingsController < ApplicationController
   end
 
   # GET /meetings/1 or /meetings/1.json
-  def show
-    # my ipv4
-    @jitsi_domain = "https://192.168.56.1:8443/"
+   def show
+    @jitsi_host = "#{Rails.configuration.jitsi_domain}:8443"
+    @jitsi_js = "#{@jitsi_host}/external_api.js"
+    @ipv4=Rails.configuration.ipv4
   end
 
   # GET /meetings/new
@@ -24,12 +25,16 @@ class MeetingsController < ApplicationController
   # POST /meetings or /meetings.json
   def create
     @meeting = current_user.meetings.build(meeting_params)
-
-    if @meeting.save
-      # Return JSON for API usage (e.g., React Native)
-      render json: { room_name: @meeting.room_name, jitsi_domain: "https://192.168.56.1:8443/" }, status: :created
-    else
-      render json: @meeting.errors, status: :unprocessable_entity
+    @meeting.operator=current_user
+    respond_to do |format|
+      if @meeting.save
+        # Return JSON for API usage (e.g., React Native)
+        format.html { redirect_to @meeting, notice: "Meeting was successfully created." }
+        format.json { render json: { room_name: @meeting.room_name, jitsi_domain: Rails.configuration.jitsi_domain }, status: :created }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @meeting.errors, status: :unprocessable_entity }
+      end
     end
   end
 

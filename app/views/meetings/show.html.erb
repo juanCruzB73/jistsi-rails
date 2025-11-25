@@ -1,29 +1,27 @@
 <h1>Meeting: <%= @meeting.room_name %></h1>
 
 <div id="jitsi" style="height: 600px; width: 100%; border: 1px solid #ccc;"></div>
-
-<script src="<%= @jitsi_domain %>/external_api.js"></script>
+<div>
+  <%= button_to "Delete this meeting", @meeting, method: :delete %>
+</div>
+<script src="<%= @jitsi_js %>"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const domain = "<%= @jitsi_domain.gsub('https://', '') %>";
-    const options = {
-      roomName: "<%= params[:room_name] || 'testroom' %>"
-      width: "100%",
-      height: 600,
-      parentNode: document.querySelector('#jitsi'),
-      configOverwrite: {
-        disableSimulcast: false,
-      },
-      interfaceConfigOverwrite: {
-        SHOW_JITSI_WATERMARK: false,
-      },
-    };
+document.addEventListener("DOMContentLoaded", () => {
+  const domain = "<%= @ipv4 %>:8443"; // no https here for Jitsi API  
+  const options = {
+    roomName: "<%= @meeting.room_name %>",
+    width: "100%",
+    height: 600,
+    parentNode: document.querySelector('#jitsi'),
+    configOverwrite: {},
+    interfaceConfigOverwrite: {}
+  };
 
-    const api = new JitsiMeetExternalAPI(domain, options);
+  const api = new JitsiMeetExternalAPI(domain, options);
 
-    api.addEventListener('videoConferenceJoined', () => {
-      console.log('Joined the meeting!');
-    });
+  api.addEventListener('videoConferenceJoined', () => {
+    console.log('Joined the meeting!');
   });
+});
 </script>

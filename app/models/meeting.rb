@@ -1,4 +1,6 @@
 class Meeting < ApplicationRecord
+  #attr_accessor :room_name
+
   belongs_to :user
   belongs_to :operator, class_name: "User"
 

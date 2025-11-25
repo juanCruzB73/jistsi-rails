@@ -13,4 +13,4 @@
   <% end %>
 </div>
 
-<%= link_to "New meeting", new_meeting_path %>
+<%= button_to "New meeting", meetings_path, params: { meeting: { status: 'new' } }, method: :post %>

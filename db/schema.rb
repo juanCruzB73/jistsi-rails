@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_134935) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_125756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,10 +21,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_134935) do
     t.datetime "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.bigint "operator_id", null: false
-    t.index ["operator_id"], name: "index_meetings_on_operator_id"
-    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,7 +34,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_134935) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_foreign_key "meetings", "users"
-  add_foreign_key "meetings", "users", column: "operator_id"
 end
