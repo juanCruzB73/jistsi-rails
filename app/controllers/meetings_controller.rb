@@ -1,12 +1,13 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: %i[ show edit update destroy ]
 
+
   # GET /meetings or /meetings.json
   def index
     @meetings = Meeting.all
   end
 
-  # GET /meetings/1 or /meetings/1.json
+   # GET /meetings/1 or /meetings/1.json
    def show
     @jitsi_host = "#{Rails.configuration.jitsi_domain}:8443"
     @jitsi_js = "#{@jitsi_host}/external_api.js"

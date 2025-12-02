@@ -1,8 +1,8 @@
 class Meeting < ApplicationRecord
-  #attr_accessor :room_name
+  # attr_accessor :room_name
 
-  belongs_to :user
-  belongs_to :operator, class_name: "User"
+  belongs_to :user, optional: true
+  belongs_to :operator, class_name: "User", optional: true
 
   before_create :generate_room_name
 
