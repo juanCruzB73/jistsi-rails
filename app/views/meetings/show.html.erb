@@ -1,9 +1,6 @@
 <h1>Meeting: <%= @meeting.room_name %></h1>
 
 <div id="jitsi" style="height: 600px; width: 100%; border: 1px solid #ccc;"></div>
-<div>
-  <%= button_to "Delete this meeting", @meeting, method: :delete %>
-</div>
 <script src="<%= @jitsi_js %>"></script>
 
 <script>

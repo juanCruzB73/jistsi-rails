@@ -15,15 +15,14 @@ class Api::MeetingsController < ApplicationController
     )
 
     ip = Rails.configuration.ipv4
-    jitsi_base = "https://#{ip}:8443"
 
     render json: {
       meeting_id: meeting.id,
       room: room,
-      jitsi_server_url: jitsi_base,
-      config_js: "#{jitsi_base}/config.js",
-      interface_config_js: "#{jitsi_base}/interface_config.js",
-      external_api_js: "#{jitsi_base}/external_api.js"
+      jitsi_server_url: ip,
+      config_js: "#{ip}/config.js",
+      interface_config_js: "#{ip}/interface_config.js",
+      external_api_js: "#{ip}/external_api.js"
     }
   end
 end

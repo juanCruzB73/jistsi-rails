@@ -9,6 +9,7 @@
     <%= render meeting %>
     <p>
       <%= link_to "Show this meeting", meeting %>
+      <%= button_to "Delete this meeting", meeting, method: :delete %>
     </p>
   <% end %>
 </div>
