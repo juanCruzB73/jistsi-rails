@@ -2,10 +2,13 @@
 
 <div id="jitsi" style="height: 600px; width: 100%; border: 1px solid #ccc;"></div>
 <script src="<%= @jitsi_js %>"></script>
-
+<h1><%= @jitsi_js %></h1>
+<h1><%= @ipv4 %></h1>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const domain = "<%= @ipv4 %>:8443"; // no https here for Jitsi API  
+  //const domain = "<%= @ipv4 %>:8443"; // no https here for Jitsi API  
+  const domain = "<%= @ipv4 %>";
+  console.log(domain);
   const options = {
     roomName: "<%= @meeting.room_name %>",
     width: "100%",

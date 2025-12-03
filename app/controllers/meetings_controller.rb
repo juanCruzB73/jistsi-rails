@@ -8,16 +8,17 @@ class MeetingsController < ApplicationController
   end
 
   # GET /meetings/1 or /meetings/1.json
-  def show
+  def show_test
     @jitsi_host = "#{Rails.configuration.jitsi_domain_test}:8443"
     @jitsi_js = "#{@jitsi_host}/external_api.js"
     @ipv4=Rails.configuration.ipv4_test
   end
-  # def show
-  #  @jitsi_host = "#{Rails.configuration.jitsi_domain}"
-  #  @jitsi_js = "#{@jitsi_host}/config.js"
-  #  @ipv4=Rails.configuration.ipv4
-  # end
+  def show
+   @jitsi_host = "#{Rails.configuration.jitsi_domain}"
+   # @jitsi_js = "#{@jitsi_host}/config.js"
+   @jitsi_js = "#{@jitsi_host}/external_api.js"
+   @ipv4=Rails.configuration.ipv4
+  end
 
   # GET /meetings/new
   def new
