@@ -14,7 +14,7 @@ class Api::MeetingsController < ApplicationController
       status: "pending"
     )
 
-    ip = Rails.configuration.ipv4
+    ip = "https://#{Rails.configuration.ipv4}"
 
     render json: {
       meeting_id: meeting.id,
